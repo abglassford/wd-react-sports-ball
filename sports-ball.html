@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sports Ball</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://npmcdn.com/react@15.3.1/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js"></script>
+    <script>
+      const App = React.createClass({
+        getInitialState: function () {
+          return { who: '' };
+        },
+
+        handleChange: function (event) {
+          const nextWho = event.target.value;
+          this.setState({ who: nextWho })
+        },
+
+        render: function () {
+          let team;
+          if(this.state.who === '') {
+            team = `Who's your fav?`
+          } else if(this.state.who === 'Denver') {
+            team = 'Go Broncos!';
+          } else if(this.state.who === 'Atlanta') {
+            team = 'Falcons! Woohoo!';
+          } else {
+            team = `${this.state.who}? Never heard of her...`
+          }
+
+          return React.createElement('div', null,
+            React.createElement('h1', null, 'Enter Your Favorite City!'),
+            React.createElement('input', {
+              onChange: this.handleChange,
+              type: 'text',
+              value: this.state.who
+            }),
+            React.createElement('p', null, team)
+          );
+        }
+      });
+
+      ReactDOM.render(
+        React.createElement(App),
+        document.getElementById('app')
+      );
+
+    </script>
+
+  </body>
+</html>
